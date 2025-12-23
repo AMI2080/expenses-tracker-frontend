@@ -1,0 +1,113 @@
+<div
+  class="flex justify-center items-center min-h-screen bg-gradient-to-br from-indigo-500 to-purple-600"
+>
+  <mat-card class="w-full max-w-[450px] flex flex-col gap-6 m-6 p-6 *:w-full">
+    <mat-card-header class="text-center flex-1 *:w-full">
+      <mat-card-title class="w-full">
+        <h1 class="m-0 text-3xl font-medium text-center">Create Account</h1>
+      </mat-card-title>
+      <mat-card-subtitle class="mt-2 text-center"
+        >Sign up to get started</mat-card-subtitle
+      >
+    </mat-card-header>
+
+    <mat-card-content>
+      <form (submit)="onSubmit($event)" class="flex flex-col gap-4">
+        <!-- Name Field -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Name</mat-label>
+          <!-- autofocus -->
+          <input
+            matInput
+            type="text"
+            [field]="registerForm.name"
+            placeholder="Enter your name"
+            autocomplete="name"
+          />
+          @if (registerForm.name().touched() && registerForm.name().invalid()) {
+          <mat-error>
+            {{ registerForm.name().errors()[0].message }}
+          </mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Email Field -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            [field]="registerForm.email"
+            placeholder="Enter your email"
+            autocomplete="email"
+          />
+          @if (registerForm.email().touched() && registerForm.email().invalid())
+          {
+          <mat-error>
+            {{ registerForm.email().errors()[0].message }}
+          </mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Password Field -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            [field]="registerForm.password"
+            placeholder="Enter your password"
+            autocomplete="new-password"
+          />
+          @if (registerForm.password().touched() &&
+          registerForm.password().invalid()) {
+          <mat-error>
+            {{ registerForm.password().errors()[0].message }}
+          </mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Confirm Password Field -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Confirm Password</mat-label>
+          <input
+            matInput
+            type="password"
+            [field]="registerForm.confirmPassword"
+            placeholder="Confirm your password"
+            autocomplete="new-password"
+          />
+          @if (registerForm.confirmPassword().touched() &&
+          registerForm.confirmPassword().invalid()) {
+          <mat-error>
+            {{ registerForm.confirmPassword().errors()[0].message }}
+          </mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Error Message -->
+        @if (errorMessage()) {
+        <div class="text-red-500 text-sm mt-2">
+          {{ errorMessage() }}
+        </div>
+        }
+
+        <!-- Submit Button -->
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="w-full mt-4 min-h-12 text-base"
+          [disabled]="isLoading()"
+          (click)="markAllFieldsAsTouched()"
+        >
+          @if (isLoading()) {
+            Registering...
+          } @else {
+            Register
+          }
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
