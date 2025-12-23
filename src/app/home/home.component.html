@@ -1,23 +1,43 @@
-<div class="flex justify-center items-center min-h-screen p-8 bg-gradient-to-br from-indigo-500 to-purple-600">
+<div
+  class="flex justify-center items-center min-h-screen p-8 bg-gradient-to-br from-indigo-500 to-purple-600"
+>
   <div class="text-center max-w-2xl text-white">
     <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
       Track Your Expenses
     </h1>
     <p class="text-xl md:text-2xl mb-10 opacity-95 leading-relaxed">
-      Manage your finances with ease. Track expenses, analyze spending patterns, and take control of your budget.
+      Manage your finances with ease. Track expenses, analyze spending patterns,
+      and take control of your budget.
     </p>
     <div class="flex gap-4 justify-center flex-wrap md:flex-row flex-col">
+      @if (currentUser) {
+      <a
+        [routerLink]="['dashboard']"
+        class="px-8 py-3.5 text-lg font-semibold rounded-lg bg-white text-indigo-500 hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 inline-block w-full md:w-auto text-center"
+      >
+        Dashboard
+      </a>
+      <button
+        (click)="logout()"
+        class="px-8 py-3.5 text-lg font-semibold rounded-lg bg-transparent text-white border-2 border-white hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 inline-block w-full md:w-auto text-center"
+      >
+        Logout
+      </button>
+      } @else {
+
       <a
         [routerLink]="['auth', 'register']"
-        class="px-8 py-3.5 text-lg font-semibold rounded-lg bg-white text-indigo-500 hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 inline-block w-full md:w-auto text-center">
+        class="px-8 py-3.5 text-lg font-semibold rounded-lg bg-white text-indigo-500 hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 inline-block w-full md:w-auto text-center"
+      >
         Get Started
       </a>
       <a
         [routerLink]="['auth', 'login']"
-        class="px-8 py-3.5 text-lg font-semibold rounded-lg bg-transparent text-white border-2 border-white hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 inline-block w-full md:w-auto text-center">
+        class="px-8 py-3.5 text-lg font-semibold rounded-lg bg-transparent text-white border-2 border-white hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 inline-block w-full md:w-auto text-center"
+      >
         Sign In
       </a>
+      }
     </div>
   </div>
 </div>
-

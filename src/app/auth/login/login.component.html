@@ -1,0 +1,69 @@
+<div
+  class="flex justify-center items-center min-h-screen bg-gradient-to-br from-indigo-500 to-purple-600"
+>
+  <mat-card class="w-full max-w-[450px] flex flex-col gap-6 m-6 p-6 *:w-full">
+    <mat-card-header class="text-center flex-1 *:w-full">
+      <mat-card-title class="w-full">
+        <h1 class="m-0 text-3xl font-medium text-center">Sign In</h1>
+      </mat-card-title>
+      <mat-card-subtitle class="mt-2 text-center">
+        Welcome back! Please sign in to your account
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form (submit)="onSubmit($event)" class="flex flex-col gap-4">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            [field]="loginForm.email"
+            placeholder="Enter your email"
+            autocomplete="email"
+            autofocus
+          />
+          @if (loginForm.email().touched() && loginForm.email().invalid()) {
+          <mat-error>
+            {{ loginForm.email().errors()[0].message }}
+          </mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            [field]="loginForm.password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+          />
+          @if (loginForm.password().touched() && loginForm.password().invalid())
+          {
+          <mat-error>
+            {{ loginForm.password().errors()[0].message }}
+          </mat-error>
+          }
+        </mat-form-field>
+
+        @if (errorMessage()) {
+        <div class="text-red-500 text-sm mt-2">
+          {{ errorMessage() }}
+        </div>
+        }
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="w-full mt-4 min-h-12 text-base"
+          [disabled]="isLoading()"
+          (click)="markAllFieldsAsTouched()"
+        >
+          @if (isLoading()) { Signing in... } @else { Sign In }
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
