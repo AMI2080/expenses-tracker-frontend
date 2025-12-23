@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from '../header/header.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-main',
-  imports: [RouterOutlet, HeaderComponent],
+  imports: [RouterOutlet, SidebarComponent],
   templateUrl: './main.component.html',
 })
-export class MainComponent {}
+export class MainComponent {
+  isSidebarCollapsed = signal(false);
+
+  toggleSidebar(): void {
+    this.isSidebarCollapsed.update(value => !value);
+  }
+}
