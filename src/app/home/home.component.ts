@@ -5,7 +5,6 @@ import { AuthService, type UserDetails } from '@app/auth/auth.service';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './home.component.html',
   encapsulation: ViewEncapsulation.None,

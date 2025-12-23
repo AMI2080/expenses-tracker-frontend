@@ -34,7 +34,6 @@ interface RegisterData {
 
 @Component({
   selector: 'app-register',
-  standalone: true,
   imports: [
     Field,
     CommonModule,

@@ -5,7 +5,6 @@ import { AuthService, type UserDetails } from '@app/auth/auth.service';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
 })

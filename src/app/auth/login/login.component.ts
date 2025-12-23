@@ -24,7 +24,6 @@ interface LoginData {
 
 @Component({
   selector: 'app-login',
-  standalone: true,
   imports: [
     Field,
     CommonModule,
