@@ -1,0 +1,64 @@
+@if (showSelector()) {
+<div class="expense-group-selector relative border-b border-gray-200">
+  <button
+    mat-button
+    type="button"
+    (click)="toggleMenu()"
+    class="[&_.mdc-button\_\_label]:w-full min-w-auto! m-2 p-2! w-[calc(100%-1rem)] z-50"
+    [title]="isCollapsed ? currentGroupName() : ''"
+  >
+    <span class="flex items-center justify-start w-full gap-2">
+      <span
+        class="bg-indigo-500 text-white rounded-full w-7.5 h-7.5 flex items-center justify-center"
+        [title]="currentGroupName()"
+      >
+        {{ currentGroupAbbreviation() }}
+      </span>
+      @if (!isCollapsed) {
+      <span class="grow truncate text-start">
+        {{ currentGroupName() }}
+      </span>
+      }
+    </span>
+  </button>
+
+  @if (isMenuOpen()) {
+  <div
+    class="fixed inset-0 backdrop-blur-[1px] z-40"
+    (click)="toggleMenu()"
+  ></div>
+  <div
+    class="absolute bg-white border border-gray-200 shadow-lg rounded-lg z-50 max-h-64 p-2 overflow-y-auto space-y-2"
+    [class]="{
+      'left-0 top-full w-full border-t': !isCollapsed,
+      'start-full top-4 w-64 ms-2': isCollapsed,
+    }"
+  >
+    @for (group of availableExpenseGroups(); track group.id) {
+    <button
+      [matButton]="currentExpenseGroup()?.id === group.id ? 'tonal' : 'text'"
+      type="button"
+      color="primary"
+      (click)="
+        currentExpenseGroup()?.id === group.id
+          ? null
+          : selectExpenseGroup(group)
+      "
+      class="w-full [&_.mdc-button\_\_label]:w-full p-2! text-sm text-start transition-colors"
+      [ngClass]="{
+        'cursor-not-allowed': currentExpenseGroup()?.id === group.id,
+        'hover:bg-gray-100': currentExpenseGroup()?.id !== group.id,
+      }"
+    >
+      <span class="flex items-center justify-start w-full">
+        <span class="grow truncate">{{ group.name }}</span>
+        @if (currentExpenseGroup()?.id === group.id) {
+        <app-check-icon />
+        }
+      </span>
+    </button>
+    }
+  </div>
+  }
+</div>
+}

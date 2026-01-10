@@ -10,6 +10,7 @@ import {
   HamburgerIconComponent,
   SignOutIconComponent,
 } from '@app/shared/icons';
+import { ExpenseGroupSelectorComponent } from './expense-group-selector/expense-group-selector.component';
 
 interface NavigationItem {
   route: string | string[];
@@ -25,11 +26,9 @@ interface NavigationItem {
     RouterLink,
     RouterLinkActive,
     MatButtonModule,
-    DashboardIconComponent,
-    ExpensesIconComponent,
-    GroupsIconComponent,
     HamburgerIconComponent,
     SignOutIconComponent,
+    ExpenseGroupSelectorComponent,
   ],
   templateUrl: './sidebar.component.html',
 })

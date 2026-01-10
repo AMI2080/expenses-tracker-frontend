@@ -1,3 +1,4 @@
+export { CheckIconComponent } from './check-icon.component';
 export { DashboardIconComponent } from './dashboard-icon.component';
 export { ExpensesIconComponent } from './expenses-icon.component';
 export { GroupsIconComponent } from './groups-icon.component';
